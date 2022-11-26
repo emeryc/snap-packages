@@ -1,0 +1,41 @@
+[package]
+name = "snap_packages"
+version = "0.1.0"
+edition = "2021"
+description = "SPA for collection tracking and sharing."
+license = "MIT OR Apache-2.0"
+keywords = ["yew", "trunk"]
+categories = ["gui", "wasm", "web-programming"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+base64 = "0.20.0"
+bitvec = {version = "1.0.1", features = ["serde"] }
+flate2 = "1.0.25"
+gloo-events = "0.1.2"
+gloo-history = "0.1.2"
+itertools = "0.10.5"
+js-sys = "0.3.60"
+serde = { version = "1.0.147", features = ["derive"] }
+serde_json = "1.0.89"
+time = {version = "0.3.17", features = ["wasm-bindgen"] }
+tracing = {version = "0.1.37",  default-features = false }
+tracing-subscriber = {version = "0.3.16", features = ["time"] }
+tracing-web = "0.1.2"
+url = "2.3.1"
+wasm-bindgen = "0.2.83"
+web-sys = { version = "0.3.60", features = ["Clipboard", "Navigator", "Location", "EventTarget"] }
+yew = { git = "https://github.com/yewstack/yew/", features = ["csr"] }
+
+
+[profile.release]
+# less code to include into binary
+panic = 'abort'
+# optimization over all codebase ( better optimization, slower build )
+codegen-units = 1
+# optimization for size ( more aggressive )
+opt-level = 'z'
+# optimization for size
+# opt-level = 's'
+# link time optimization using using whole-program analysis
+lto = true
