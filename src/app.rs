@@ -103,8 +103,13 @@ pub struct CardProps {
 pub fn CardComp(props: &CardProps) -> Html {
     let check = props.check.clone();
     let id = props.card.id;
+    let class = if props.checked {
+        "card checked"
+    } else {
+        "card"
+    };
     html! {
-        <div class="card">
+        <div class={class}>
             <label>
                 <input type="checkbox"
                 checked={props.checked}
